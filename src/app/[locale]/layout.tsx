@@ -2,11 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.scss";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import {
-  getMessages,
-  getTranslations,
-  unstable_setRequestLocale,
-} from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import ErrorBoundary from "@/ErrorBoundary";
@@ -22,9 +18,8 @@ export function generateStaticParams() {
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata({
-  params: { locale },
-}: Omit<Props, "children">) {
+export async function generateMetadata({ params }: Omit<Props, "children">) {
+  const { locale } = await params;
   const t = await getTranslations({ locale });
   return {
     title: t("title"),
@@ -32,11 +27,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function RootLayout({
-  children,
-  params: { locale },
-}: Props) {
-  unstable_setRequestLocale(locale);
+export default async function RootLayout({ children, params }: Props) {
+  const { locale } = await params;
   const messages = await getMessages();
 
   return (

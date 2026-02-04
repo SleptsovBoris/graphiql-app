@@ -1,37 +1,37 @@
-import "@testing-library/jest-dom"
+import "@testing-library/jest-dom";
 // setupTests.ts
 
 global.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
-  const url = typeof input === "string" ? input : input.toString()
+  const url = typeof input === "string" ? input : input.toString();
   return {
     status: 200,
     statusText: "OK",
     headers: new Headers({ "Content-Type": "application/json" }),
     text: async () => JSON.stringify({ data: "mocked response" }),
     json: async () => ({ data: "mocked response" }),
-  } as Response
-}
+  } as Response;
+};
 
 // Мок для localStorage
 const localStorageMock = (function () {
-  let store: { [key: string]: string } = {}
+  let store: { [key: string]: string } = {};
 
   return {
     getItem(key: string) {
-      return store[key] || null
+      return store[key] || null;
     },
     setItem(key: string, value: string) {
-      store[key] = value.toString()
+      store[key] = value.toString();
     },
     removeItem(key: string) {
-      delete store[key]
+      delete store[key];
     },
     clear() {
-      store = {}
+      store = {};
     },
-  }
-})()
+  };
+})();
 
 Object.defineProperty(window, "localStorage", {
   value: localStorageMock,
-})
+});

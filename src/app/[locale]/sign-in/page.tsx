@@ -24,10 +24,14 @@ const SignIn = () => {
     }
 
     try {
+      if (!auth) {
+        setError("Auth not initialized");
+        return;
+      }
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
       const user = userCredential.user;
       console.log("User signed in:", user);
