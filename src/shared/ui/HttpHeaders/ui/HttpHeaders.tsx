@@ -1,13 +1,15 @@
 import { useTranslations } from "next-intl";
+
 import styles from "./HttpHeaders.module.scss";
-import { removeHeader, updateHeader } from "@/utils/headers";
+
+import { removeHeader, updateHeader } from "@/shared/utils/headers";
 
 type Props = {
   headers: { key: string; value: string }[];
   setHeaders: (headers: { key: string; value: string }[]) => void;
 };
 
-const HttpHeaders = (props: Props) => {
+export const HttpHeaders = (props: Props) => {
   const t = useTranslations();
   return (
     <div className={styles.headersSection}>
@@ -52,5 +54,3 @@ const HttpHeaders = (props: Props) => {
     </div>
   );
 };
-
-export default HttpHeaders;

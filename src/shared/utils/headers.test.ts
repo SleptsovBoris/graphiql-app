@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { removeHeader, updateHeader } from "./headers"; // Замените на путь к вашему модулю
+
+import { removeHeader, updateHeader } from "./headers";
 
 describe("updateHeader", () => {
   it("должен обновить ключ заголовка", () => {
@@ -44,7 +45,7 @@ describe("updateHeader", () => {
       { key: "Authorization", value: "Bearer token" },
     ];
     const updatedHeaders = updateHeader(headers, 1, "key", "Auth");
-    expect(updatedHeaders).not.toBe(headers); // Проверяем, что возвращается новый массив
+    expect(updatedHeaders).not.toBe(headers);
   });
 });
 
@@ -78,7 +79,7 @@ describe("removeHeader", () => {
       { key: "Authorization", value: "Bearer token" },
     ];
     const updatedHeaders = removeHeader(headers, 0);
-    expect(updatedHeaders).not.toBe(headers); // Проверяем, что возвращается новый массив
+    expect(updatedHeaders).not.toBe(headers);
   });
 
   it("должен вернуть пустой массив, если удалить единственный заголовок", () => {

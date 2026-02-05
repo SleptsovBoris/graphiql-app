@@ -1,11 +1,12 @@
 import { Inter } from "next/font/google";
 import "./globals.scss";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import { getMessages, getTranslations } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import { routing } from "@/i18n/routing";
+import { getMessages, getTranslations } from "next-intl/server";
+
 import ErrorBoundary from "@/ErrorBoundary";
+import { routing } from "@/i18n/routing";
+import { Footer } from "@/shared/ui/Footer";
+import { Header } from "@/shared/ui/Header";
 
 type Props = {
   children: React.ReactNode;

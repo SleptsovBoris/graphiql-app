@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import SignUp from "./page";
 import { vi } from "vitest";
+
+import SignUp from "./page";
 import "@testing-library/jest-dom";
 
 const mockCreateUserWithEmailAndPassword = async () => ({

@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { auth } from "../../../authorization/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import styles from "./page.module.scss";
-import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/routing";
 import { FirebaseError } from "firebase/app";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
+
+import styles from "./page.module.scss";
+
+import { auth } from "@/authorization/firebase";
+import { useRouter } from "@/i18n/routing";
 
 const SignUp = () => {
   const t = useTranslations();
@@ -53,6 +55,7 @@ const SignUp = () => {
     }
 
     try {
+      if (!auth) return;
       await createUserWithEmailAndPassword(auth, email, password);
       setSuccess(true);
       setError(null);

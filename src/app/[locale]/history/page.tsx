@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import styles from "./page.module.scss";
 import { useTranslations } from "next-intl";
+import { useState, useEffect } from "react";
+
+import styles from "./page.module.scss";
 
 interface RequestHistoryItem {
   id: string;
@@ -22,11 +23,11 @@ const History = () => {
 
   useEffect(() => {
     const storedHistory = JSON.parse(
-      localStorage.getItem("requestHistory") || "[]"
+      localStorage.getItem("requestHistory") || "[]",
     );
     const sortedHistory = storedHistory.sort(
       (a: RequestHistoryItem, b: RequestHistoryItem) =>
-        b.timestamp - a.timestamp
+        b.timestamp - a.timestamp,
     );
     setHistory(sortedHistory);
   }, []);
@@ -62,10 +63,19 @@ const History = () => {
     const encodedHeaders = btoa(JSON.stringify(item.headers));
 
     if (item.isGraphQL) {
-      const newUrl = `/${locale}/graphiql-client?url=${encodedUrl}&query=${encodedQuery}&variables=${encodedVariables}&headers=${encodedHeaders}`;
+      const newUrl = `/${locale}/graphiql-client?
+      url=${encodedUrl}
+      &query=${encodedQuery}
+      &variables=${encodedVariables}
+      &headers=${encodedHeaders}`;
       window.location.href = newUrl;
     } else {
-      const newUrl = `/${locale}/rest-client?method=${item.method}&url=${encodedUrl}&body=${encodedQuery}&variables=${encodedVariables}&headers=${encodedHeaders}`;
+      const newUrl = `/${locale}/rest-client?
+      method=${item.method}
+      &url=${encodedUrl}
+      &body=${encodedQuery}
+      &variables=${encodedVariables}
+      &headers=${encodedHeaders}`;
       window.location.href = newUrl;
     }
   };

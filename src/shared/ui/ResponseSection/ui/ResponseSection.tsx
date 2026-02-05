@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+
 import styles from "./ResponceSection.module.scss";
 
 type Props = {
@@ -6,7 +7,7 @@ type Props = {
   responseBody: string;
 };
 
-const ResponseSection = (props: Props) => {
+export const ResponseSection = (props: Props) => {
   const t = useTranslations();
   return (
     <div className={styles.responseSection}>
@@ -27,5 +28,3 @@ const ResponseSection = (props: Props) => {
     </div>
   );
 };
-
-export default ResponseSection;

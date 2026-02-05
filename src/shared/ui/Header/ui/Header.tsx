@@ -1,16 +1,17 @@
 "use client";
 
-import { Link } from "@/i18n/routing";
-import styles from "./Header.module.scss";
-import Image from "next/image";
-import LangToggler from "../LangToggler/LangToggler";
-import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
-
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
-import { auth } from "@/authorization/firebase";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
-const Header = () => {
+import styles from "./Header.module.scss";
+
+import { auth } from "@/authorization/firebase";
+import { Link } from "@/i18n/routing";
+import { LangToggler } from "@/shared/ui/LangToggler";
+
+export const Header = () => {
   const t = useTranslations();
   const [isSticky, setSticky] = useState(false);
   const [user, setUser] = useState<User | null>(null);
@@ -25,7 +26,7 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
+    if (!auth) return;
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
@@ -38,6 +39,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
+      if (!auth) return;
       await signOut(auth);
       document.cookie = "authToken=; Max-Age=0; path=/";
       localStorage.removeItem("requestHistory");
@@ -76,5 +78,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

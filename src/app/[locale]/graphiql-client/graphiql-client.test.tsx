@@ -1,8 +1,10 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+
 import GraphiQL from "./page";
-import { SendHttpRequest } from "@/utils/sendHttpRequest";
-import "@testing-library/jest-dom"; // Импортируйте это
+
+import { SendHttpRequest } from "@/shared/utils/sendHttpRequest";
+import "@testing-library/jest-dom";
 
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,

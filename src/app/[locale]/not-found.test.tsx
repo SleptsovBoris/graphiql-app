@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
+
 import NotFound from "./not-found";
 
 vi.mock("@/i18n/routing", () => ({

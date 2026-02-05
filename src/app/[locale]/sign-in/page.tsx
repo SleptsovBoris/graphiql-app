@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { auth } from "../../../authorization/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import styles from "./page.module.scss";
-import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import { FirebaseError } from "firebase/app";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
+
+import styles from "./page.module.scss";
+
+import { auth } from "@/authorization/firebase";
 
 const SignIn = () => {
   const t = useTranslations();

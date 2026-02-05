@@ -1,11 +1,13 @@
 "use client";
 
-import { useRouter, usePathname } from "@/i18n/routing";
-import { useEffect, useState } from "react";
-import styles from "./LangToggler.module.scss";
 import { useLocale } from "next-intl";
+import { useEffect, useState } from "react";
 
-const LangToggler = () => {
+import styles from "./LangToggler.module.scss";
+
+import { useRouter, usePathname } from "@/i18n/routing";
+
+export const LangToggler = () => {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
@@ -37,5 +39,3 @@ const LangToggler = () => {
     </div>
   );
 };
-
-export default LangToggler;

@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import styles from "./page.module.scss";
 import { useTranslations } from "next-intl";
-import ResponseSection from "@/components/ResponseSection/ResponseSection";
-import { SendHttpRequest } from "@/utils/sendHttpRequest";
-import HttpHeaders from "@/components/HttpHeaders/HttpHeaders";
+import { useEffect, useState } from "react";
+
+import styles from "./page.module.scss";
+
+import { HttpHeaders } from "@/shared/ui/HttpHeaders";
+import { ResponseSection } from "@/shared/ui/ResponseSection";
+import { SendHttpRequest } from "@/shared/utils/sendHttpRequest";
 
 const Rest = () => {
   const t = useTranslations();

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import SignIn from "./page";
 import { vi } from "vitest";
+
+import SignIn from "./page";
 import "@testing-library/jest-dom";
 
 const mockSignInWithEmailAndPassword = async () => ({

@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { defineRouting } from "next-intl/routing";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
 vi.mock("next-intl/routing", () => ({
   defineRouting: vi.fn(),

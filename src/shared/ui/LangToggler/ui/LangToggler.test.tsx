@@ -1,8 +1,11 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import LangToggler from "./LangToggler";
-import { useRouter, usePathname } from "@/i18n/routing";
 import { useLocale } from "next-intl";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+
+import { LangToggler } from "./LangToggler";
+
+import { useRouter, usePathname } from "@/i18n/routing";
+
 import "@testing-library/jest-dom";
 
 vi.mock("@/i18n/routing", () => ({

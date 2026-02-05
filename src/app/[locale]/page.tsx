@@ -1,18 +1,21 @@
 "use client";
 
-import styles from "./page.module.scss";
-import { Link } from "@/i18n/routing";
+import { onAuthStateChanged } from "firebase/auth";
 import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
-import { auth } from "../../authorization/firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import About from "@/components/About/About";
+
+import styles from "./page.module.scss";
+
+import { auth } from "@/authorization/firebase";
+import { Link } from "@/i18n/routing";
+import { About } from "@/shared/ui/About";
 
 export default function Home() {
   const t = useTranslations();
   const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!auth) return;
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setEmail(user.email);

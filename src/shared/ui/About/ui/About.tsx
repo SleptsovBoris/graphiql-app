@@ -1,9 +1,10 @@
-import React from "react";
-import styles from "./About.module.scss";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import React from "react";
 
-const About = () => {
+import styles from "./About.module.scss";
+
+export const About = () => {
   const t = useTranslations();
   return (
     <div className={styles.about}>
@@ -45,5 +46,3 @@ const About = () => {
     </div>
   );
 };
-
-export default About;

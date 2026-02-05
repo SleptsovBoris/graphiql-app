@@ -1,9 +1,9 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import ResponseSection from "./ResponseSection";
-import "@testing-library/jest-dom"; // Импортируйте это
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
-// Моки для useTranslations
+import { ResponseSection } from "./ResponseSection";
+import "@testing-library/jest-dom";
+
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
 }));

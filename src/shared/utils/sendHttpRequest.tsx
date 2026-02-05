@@ -33,7 +33,7 @@ export const SendHttpRequest = async ({
     const headersQuery = headers
       .map(
         ({ key, value }) =>
-          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
       )
       .join("&");
 
@@ -50,7 +50,7 @@ export const SendHttpRequest = async ({
     const fetchOptions: RequestInit = {
       method,
       headers: Object.fromEntries(
-        headers.map(({ key, value }) => [key, value])
+        headers.map(({ key, value }) => [key, value]),
       ),
     };
 
@@ -86,7 +86,7 @@ export const SendHttpRequest = async ({
       headers,
       query,
       variables,
-      method === "POST"
+      method === "POST",
     );
   } catch (error) {
     setResponseStatus("Error");

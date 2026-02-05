@@ -1,7 +1,8 @@
 import Image from "next/image";
+
 import styles from "./Footer.module.scss";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <a
@@ -21,5 +22,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

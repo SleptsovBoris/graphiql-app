@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { saveRequestToHistory } from "./saveRequestToHistory"; // Замените на путь к вашему модулю
+
+import { saveRequestToHistory } from "./saveRequestToHistory";
 
 describe("saveRequestToHistory", () => {
   beforeEach(() => {

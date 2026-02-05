@@ -1,14 +1,14 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import HttpHeaders from "./HttpHeaders";
-import { removeHeader, updateHeader } from "@/utils/headers";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
-// Моки для useTranslations
+import { HttpHeaders } from "./HttpHeaders";
+
+import { removeHeader, updateHeader } from "@/shared/utils/headers";
+
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
 }));
 
-// Моки для функций removeHeader и updateHeader
 vi.mock("@/utils/headers", () => ({
   removeHeader: vi.fn(),
   updateHeader: vi.fn(),

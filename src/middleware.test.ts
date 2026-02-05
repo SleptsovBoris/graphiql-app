@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from "vitest";
-import { middleware } from "./middleware";
 import { NextRequest, NextResponse } from "next/server";
+import { describe, it, expect, vi } from "vitest";
 
-// Моки для NextRequest и NextResponse
+import { middleware } from "./middleware";
+
 vi.mock("next/server", () => {
   return {
     NextResponse: {
@@ -48,7 +48,8 @@ describe("middleware", () => {
     );
   });
 
-  it("должен возвращать NextResponse.next для публичных страниц, если токен авторизации отсутствует", () => {
+  it(`должен возвращать NextResponse.next для публичных страниц,
+     если токен авторизации отсутствует`, () => {
     const req = createRequestMock("http://localhost/en/sign-in");
 
     middleware(req);
@@ -66,7 +67,8 @@ describe("middleware", () => {
     expect(NextResponse.redirect).toHaveBeenCalledWith(new URL("/en", req.url));
   });
 
-  it("должен редиректить на /en/, если пользователь пытается зайти на защищенную страницу без токена", () => {
+  it(`должен редиректить на /en/,
+если пользователь пытается зайти на защищенную страницу без токена`, () => {
     const req = createRequestMock("http://localhost/en/rest-client");
 
     middleware(req);
