@@ -8,7 +8,7 @@ import { useState } from "react";
 
 import styles from "./page.module.scss";
 
-import { auth } from "@/authorization/firebase";
+import { auth } from "@/shared/config/authorization/firebase";
 
 const SignIn = () => {
   const t = useTranslations();

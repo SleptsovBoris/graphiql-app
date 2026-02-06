@@ -4,7 +4,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
 import { LangToggler } from "./LangToggler";
 
-import { useRouter, usePathname } from "@/i18n/routing";
+import { useRouter, usePathname } from "@/shared/config/i18n/routing";
 
 import "@testing-library/jest-dom";
 

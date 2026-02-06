@@ -7,8 +7,8 @@ import { useState } from "react";
 
 import styles from "./page.module.scss";
 
-import { auth } from "@/authorization/firebase";
-import { useRouter } from "@/i18n/routing";
+import { auth } from "@/shared/config/authorization/firebase";
+import { useRouter } from "@/shared/config/i18n/routing";
 
 const SignUp = () => {
   const t = useTranslations();

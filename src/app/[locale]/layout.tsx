@@ -3,18 +3,18 @@ import "./globals.scss";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 
-import ErrorBoundary from "@/ErrorBoundary";
-import { routing } from "@/i18n/routing";
+import { i18nRouting, Locale } from "@/shared/config/i18n/routing";
+import { ErrorBoundary } from "@/shared/ui/ErrorBoundary/ui/ErrorBoundary";
 import { Footer } from "@/shared/ui/Footer";
-import { Header } from "@/shared/ui/Header";
+import { Header } from "@/widgets/Header";
 
 type Props = {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: Locale };
 };
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return i18nRouting.locales.map((locale) => ({ locale }));
 }
 
 const inter = Inter({ subsets: ["latin"] });

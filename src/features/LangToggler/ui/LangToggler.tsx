@@ -1,29 +1,25 @@
 "use client";
 
-import { useLocale } from "next-intl";
-import { useEffect, useState } from "react";
-
 import styles from "./LangToggler.module.scss";
 
-import { useRouter, usePathname } from "@/i18n/routing";
+import { useRouter, usePathname, Locale } from "@/shared/config/i18n/routing";
+import {
+  getNextLocale,
+  isDefaultLocale,
+  useTypedLocale,
+} from "@/shared/utils/i18n";
 
 export const LangToggler = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const locale = useLocale();
-  const [isEnglish, setIsEnglish] = useState(locale === "en");
+  const locale = useTypedLocale();
 
-  useEffect(() => {
-    setIsEnglish(locale === "en");
-  }, [locale]);
-
-  const changeLanguage = (locale: "en" | "ru" | undefined) => {
+  const changeLanguage = (locale: Locale) => {
     router.replace(pathname, { locale });
   };
 
   const handleToggle = () => {
-    const newLocale = isEnglish ? "ru" : "en";
-    changeLanguage(newLocale);
+    changeLanguage(getNextLocale(locale));
   };
 
   return (
@@ -31,7 +27,7 @@ export const LangToggler = () => {
       <input
         type="checkbox"
         className={styles.checkbox}
-        checked={isEnglish}
+        checked={isDefaultLocale(locale)}
         onChange={handleToggle}
       />
       <div className={styles.knobs}></div>

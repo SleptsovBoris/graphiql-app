@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import React from "react";
 
 import styles from "./About.module.scss";
 

@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 
 import styles from "./Header.module.scss";
 
-import { auth } from "@/authorization/firebase";
-import { Link } from "@/i18n/routing";
-import { LangToggler } from "@/shared/ui/LangToggler";
+import { LangToggler } from "@/features/LangToggler";
+import { auth } from "@/shared/config/authorization/firebase";
+import { Link } from "@/shared/config/i18n/routing";
 
 export const Header = () => {
   const t = useTranslations();
