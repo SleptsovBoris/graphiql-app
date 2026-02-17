@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 
 import { i18nRouting, Locale } from "@/shared/config/i18n/routing";
+import { AuthProvider } from "@/shared/prodivers/AuthProvider/AuthProvider";
 import { ErrorBoundary } from "@/shared/ui/ErrorBoundary/ui/ErrorBoundary";
 import { Footer } from "@/shared/ui/Footer";
 import { Header } from "@/widgets/Header";
@@ -37,11 +38,13 @@ export default async function RootLayout({ children, params }: Props) {
       <body className={inter.className}>
         <ErrorBoundary>
           <NextIntlClientProvider messages={messages}>
-            <div className="rootWrapper">
-              <Header />
-              <main className="mainWrapper">{children}</main>
-              <Footer />
-            </div>
+            <AuthProvider>
+              <div className="rootWrapper">
+                <Header />
+                <main className="mainWrapper">{children}</main>
+                <Footer />
+              </div>
+            </AuthProvider>
           </NextIntlClientProvider>
         </ErrorBoundary>
       </body>

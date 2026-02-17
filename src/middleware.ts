@@ -1,8 +1,8 @@
-import { authMiddleware } from "@/shared/ui/middleware/auth";
-import { composeMiddleware } from "@/shared/ui/middleware/compose";
-import { guestMiddleware } from "@/shared/ui/middleware/guest";
-import { localeMiddleware } from "@/shared/ui/middleware/locale";
-import { rootRedirectMiddleware } from "@/shared/ui/middleware/root";
+import { authMiddleware } from "@/shared/config/middleware/auth";
+import { composeMiddleware } from "@/shared/config/middleware/compose";
+import { guestMiddleware } from "@/shared/config/middleware/guest";
+import { localeMiddleware } from "@/shared/config/middleware/locale";
+import { rootRedirectMiddleware } from "@/shared/config/middleware/root";
 
 export const middleware = composeMiddleware([
   rootRedirectMiddleware,
@@ -12,8 +12,5 @@ export const middleware = composeMiddleware([
 ]);
 
 export const config = {
-  matcher: [
-    "/",
-    "/:locale((?!_next|favicon.ico|static|robots.txt|.*\\..+).*)/:path*",
-  ],
+  matcher: ["/", "/((?!api|_next|favicon.ico|static|robots.txt|.*\\..+).*)"],
 };

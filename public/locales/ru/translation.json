@@ -40,7 +40,11 @@
 
   "error-user-not-found": "Пользователь не найден",
   "error-wrong-password": "Неверный пароль",
-  "error-sign-in": "Ошибка авторизации",
+  "error-sign-in": "Ошибка входа в учетную запись",
+  "error-email-already-in-use": "Email уже используется",
+  "error-invalid-email": "Неправильный email",
+  "error-weak-password": "Слабый пароль",
+  "error-sign-up": "Ошибка регистрации учетной записи",
 
   "error-password-message": "Пароль должен содержать как минимум: ",
   "error-password-length": "8 символов",

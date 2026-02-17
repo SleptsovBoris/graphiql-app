@@ -1,56 +1,44 @@
 "use client";
 
-import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import styles from "./Header.module.scss";
 
+import { useAuth } from "@/features/auth/model/useAuth";
 import { LangToggler } from "@/features/LangToggler";
-import { auth } from "@/shared/config/authorization/firebase";
-import { Link } from "@/shared/config/i18n/routing";
+import { Link, useRouter } from "@/shared/config/i18n/routing";
+import { ROUTES } from "@/shared/config/routing/routes";
 
 export const Header = () => {
   const t = useTranslations();
+  const router = useRouter();
+  const { user, signOut } = useAuth();
+
   const [isSticky, setSticky] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
 
   const handleScroll = () => {
-    if (window.scrollY > 10) {
-      setSticky(true);
-    } else {
-      setSticky(false);
-    }
+    setSticky(window.scrollY > 10);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    if (!auth) return;
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      unsubscribe();
     };
   }, []);
 
   const handleLogout = async () => {
-    try {
-      if (!auth) return;
-      await signOut(auth);
-      document.cookie = "authToken=; Max-Age=0; path=/";
-      localStorage.removeItem("requestHistory");
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
+    await signOut();
+    router.push(ROUTES.ROOT);
+    router.refresh();
   };
 
   return (
     <header className={`${styles.header} ${isSticky ? styles.sticky : ""}`}>
-      <Link href="/" className={styles.logoWrapper}>
+      <Link href={ROUTES.ROOT} className={styles.logoWrapper}>
         <Image src="/team-logo.svg" alt="Logo" width={30} height={30} />
       </Link>
 
@@ -65,11 +53,11 @@ export const Header = () => {
           </div>
         ) : (
           <>
-            <Link href="/sign-in" className={styles.signNav}>
+            <Link href={ROUTES.SIGN_IN} className={styles.signNav}>
               {t("sign-in")}
             </Link>
             |
-            <Link href="/sign-up" className={styles.signNav}>
+            <Link href={ROUTES.SIGN_UP} className={styles.signNav}>
               {t("sign-up")}
             </Link>
           </>

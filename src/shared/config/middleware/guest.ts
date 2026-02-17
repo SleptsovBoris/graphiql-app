@@ -13,11 +13,13 @@ export function guestMiddleware(req: NextRequest) {
 
   const pathAfterLocale = `/${rest.join("/")}`;
 
-  const isGuest = PUBLIC_ROUTES.some((route) =>
-    pathAfterLocale.startsWith(`/${route}`),
+  const isGuest = PUBLIC_ROUTES.some(
+    (route) =>
+      pathAfterLocale === `/${route}` ||
+      pathAfterLocale.startsWith(`/${route}/`),
   );
 
-  if (isGuest && authToken && pathname !== `/${locale}`) {
+  if (isGuest && authToken) {
     return NextResponse.redirect(new URL(`/${locale}`, req.url));
   }
 }
