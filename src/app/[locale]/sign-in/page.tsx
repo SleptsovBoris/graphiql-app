@@ -1,13 +1,5 @@
-import dynamic from "next/dynamic";
+import SignIn from "@/features/auth/ui/SignInForm/SignInForm";
 
-import { Loader } from "@/shared/ui/Loader";
-
-const SignInPage = dynamic(
-  () => import("@/features/auth/ui/SignInForm/SignInForm"),
-  {
-    ssr: true,
-    loading: () => <Loader />,
-  },
-);
-
-export default SignInPage;
+export default function Page() {
+  return <SignIn />;
+}
