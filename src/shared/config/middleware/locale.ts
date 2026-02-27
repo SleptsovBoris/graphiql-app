@@ -7,7 +7,7 @@ export function localeMiddleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const [, locale, ...rest] = pathname.split("/");
 
-  if (isLocale(locale)) return;
+  if (isLocale(locale)) return NextResponse.next();
   const redirectUrl = new URL(
     `/${i18nRouting.defaultLocale}/${rest.join("/")}`,
     req.url,
