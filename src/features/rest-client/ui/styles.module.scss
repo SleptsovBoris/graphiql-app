@@ -44,6 +44,7 @@
       font-weight: bold;
       margin-bottom: 10px;
     }
+
     button {
       color: black;
       padding: 8px 12px;
@@ -55,6 +56,7 @@
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s;
+
       &:hover {
         background-color: #6dcce9;
       }
