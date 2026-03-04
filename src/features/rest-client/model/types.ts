@@ -1,15 +1,16 @@
-export type Header = {
-  key: string;
-  value: string;
+import {
+  BaseRequestAction,
+  BaseRequestState,
+  HttpMethod,
+} from "@/shared/lib/http/types";
+
+export type RestState = BaseRequestState & {
+  method: HttpMethod;
+  body: string;
 };
 
-export type RestState = {
-  method: string;
-  url: string;
-  headers: Header[];
-  body: string;
-  responseStatus: string;
-  responseBody: string;
-  isLoading: boolean;
-  error: string | null;
-};
+export type RestAction =
+  | BaseRequestAction
+  | { type: "SET_METHOD"; payload: HttpMethod }
+  | { type: "SET_BODY"; payload: string }
+  | { type: "HYDRATE"; payload: Partial<RestState> };

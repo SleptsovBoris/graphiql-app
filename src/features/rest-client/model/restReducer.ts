@@ -1,31 +1,20 @@
-import { RestState, Header } from "./types";
-
-export type RestAction = Action;
-
-type Action =
-  | { type: "SET_METHOD"; payload: string }
-  | { type: "SET_URL"; payload: string }
-  | { type: "SET_HEADERS"; payload: Header[] }
-  | { type: "SET_BODY"; payload: string }
-  | { type: "SET_RESPONSE"; payload: { status: string; body: string } }
-  | { type: "SET_LOADING"; payload: boolean }
-  | { type: "SET_ERROR"; payload: string }
-  | { type: "CLEAR_ERROR" }
-  | { type: "HYDRATE"; payload: Partial<RestState> }
-  | { type: "RESET" };
+import { RestAction, RestState } from "./types";
 
 export const initialState: RestState = {
   method: "GET",
   url: "",
   headers: [{ key: "", value: "" }],
   body: "",
-  responseStatus: "",
-  responseBody: "",
+  responseStatus: null,
+  responseBody: null,
   isLoading: false,
   error: null,
 };
 
-export const restReducer = (state: RestState, action: Action): RestState => {
+export const restReducer = (
+  state: RestState,
+  action: RestAction,
+): RestState => {
   switch (action.type) {
     case "SET_METHOD":
       return { ...state, method: action.payload };
@@ -40,13 +29,10 @@ export const restReducer = (state: RestState, action: Action): RestState => {
       return { ...state, body: action.payload };
 
     case "SET_LOADING":
-      return { ...state, isLoading: action.payload };
+      return { ...state, isLoading: action.payload, error: null };
 
     case "SET_ERROR":
       return { ...state, error: action.payload };
-
-    case "CLEAR_ERROR":
-      return { ...state, error: null };
 
     case "SET_RESPONSE":
       return {

@@ -9,7 +9,8 @@ import { ResponseSection } from "@/shared/ui/ResponseSection";
 
 const RestClient = () => {
   const t = useTranslations();
-  const { state, dispatch, sendRequest } = useRestClient();
+  const { state, setMethod, setUrl, setHeaders, setBody, sendRequest } =
+    useRestClient();
 
   return (
     <div className={styles.restClientContainer}>
@@ -17,7 +18,10 @@ const RestClient = () => {
 
       <RequestSection
         state={state}
-        dispatch={dispatch}
+        setMethod={setMethod}
+        setUrl={setUrl}
+        setHeaders={setHeaders}
+        setBody={setBody}
         sendRequest={sendRequest}
       />
 

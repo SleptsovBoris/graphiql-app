@@ -17,22 +17,15 @@
     margin-bottom: 20px;
   }
 
-  input {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    background-color: #f1f1f1;
+  .status[data-status="green"] {
+    color: #22c55e;
   }
 
-  textarea {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  .status[data-status="orange"] {
+    color: #f97316;
+  }
+
+  .status[data-status="red"] {
+    color: #ef4444;
   }
 }

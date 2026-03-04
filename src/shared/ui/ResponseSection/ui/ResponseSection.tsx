@@ -3,28 +3,32 @@ import { useTranslations } from "next-intl";
 import styles from "./ResponceSection.module.scss";
 
 type Props = {
-  responseStatus: string;
-  responseBody: string;
+  responseStatus: number | null;
+  responseBody: string | null;
 };
 
-export const ResponseSection = (props: Props) => {
+export const ResponseSection = ({ responseBody, responseStatus }: Props) => {
   const t = useTranslations();
+
+  const getStatusColor = (status: number | null) => {
+    if (!status) return "gray";
+    if (status >= 200 && status < 300) return "green";
+    if (status >= 400 && status < 500) return "orange";
+    if (status >= 500) return "red";
+    return "gray";
+  };
+
   return (
     <div className={styles.responseSection}>
       <label>{t("status")}:</label>
-      <input
+      <div
         className={styles.status}
-        type="text"
-        value={props.responseStatus}
-        placeholder={t("http-status-code")}
-        readOnly
-      />
+        data-status={getStatusColor(responseStatus)}
+      >
+        {responseStatus ?? "-"}
+      </div>
       <label>{t("body")}:</label>
-      <textarea
-        value={props.responseBody}
-        placeholder={t("read-only-json-viewer")}
-        readOnly
-      ></textarea>
+      <pre className={styles.body}>{responseBody ?? ""}</pre>
     </div>
   );
 };

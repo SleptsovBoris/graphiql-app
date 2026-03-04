@@ -2,11 +2,12 @@ import { useTranslations } from "next-intl";
 
 import styles from "./HttpHeaders.module.scss";
 
+import { Header } from "@/shared/types/http";
 import { removeHeader, updateHeader } from "@/shared/utils/headers";
 
 type Props = {
   headers: { key: string; value: string }[];
-  setHeaders: (headers: { key: string; value: string }[]) => void;
+  setHeaders: (headers: Header[]) => void;
 };
 
 export const HttpHeaders = (props: Props) => {

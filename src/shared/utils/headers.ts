@@ -1,5 +1,7 @@
+import { Header } from "../lib/http/types";
+
 export const updateHeader = (
-  headers: { key: string; value: string }[],
+  headers: Header[],
   index: number,
   keyOrValue: "key" | "value",
   value: string,
@@ -10,9 +12,6 @@ export const updateHeader = (
   return newHeaders;
 };
 
-export const removeHeader = (
-  headers: { key: string; value: string }[],
-  index: number,
-) => {
+export const removeHeader = (headers: Header[], index: number) => {
   return headers.filter((_, i) => i !== index);
 };
